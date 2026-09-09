@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "/",
+    baseURL: "https://cognivo-backend-p704.onrender.com",
     withCredentials: true,
 })
 
