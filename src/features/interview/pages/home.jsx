@@ -14,10 +14,22 @@ const Home = () => {
     const navigate = useNavigate()
 
     const handleGeneratorReport = async () => {
-        const resumeFile = resumeInputRef.current.files[0]
-        const data = await generateReport({ jobDescription, selfDescription, resumeFile })
-        navigate(`/interview/${data._id}`)
+    const resumeFile = resumeInputRef.current.files[0]
+
+    if (!resumeFile) {
+        alert("Please upload your resume before generating a report.")
+        return
     }
+
+    const data = await generateReport({ jobDescription, selfDescription, resumeFile })
+
+    if (!data || !data._id) {
+        alert("Something went wrong while generating your report. Please try again.")
+        return
+    }
+
+    navigate(`/interview/${data._id}`)
+}
 
     const handleMouseMove = (e) => {
         const el = containerRef.current
